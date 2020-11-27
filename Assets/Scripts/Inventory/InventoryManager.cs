@@ -2,29 +2,31 @@
 
 public class InventoryManager : MonoBehaviour
 {
-    private Item[] Inventory = new Item[20];
+    public CellInventory[] CellArray = new CellInventory[20];
     public delegate void UpdateInventory(int index, Item _item, bool IsAdd);
     public event UpdateInventory UpdateEvent;
+    public static InventoryManager instance;
+    // ивент и делегат был добавлен лишь для практики. Фактического применения нет
     private void Awake()
     {
-        UpdateEvent += UpdateCell;
+        if (instance == null) instance = this;
+        UpdateEvent += UpdateCell; // назначаем ивент
     }
     public void AddItem(Item item)
     {
-        for (int i = 0; i < Inventory.Length; i++)
+        for (int i = 0; i < CellArray.Length; i++)
         {
-            if (Inventory[i] == null)
+            if (CellArray[i].item == null) // проверяем ячейку на свободность
             {
-                Inventory[i] = item;
-                UpdateEvent?.Invoke(i, item, true);
+                CellArray[i].item = item;
+                UpdateEvent?.Invoke(i, item, true); // событие обновления ячейки
                 break;
             }
-            else if (Inventory[i].GetType().Equals(item.GetType()))
+            else if (CellArray[i].item.GetType().Equals(item.GetType())) // проверка на одинаковый тип
             {
-                if (Inventory[i].MaxInCell > 1 &&
-                    InventoryHandler.instance.CellArray[i].Count != Inventory[i].MaxInCell)
-                {
-                    InventoryHandler.instance.CellArray[i].Count += 1;
+                if (CellArray[i].item.MaxInCell > CellArray[i].Count)
+                { // проверка на вместимость
+                    CellArray[i].Count += 1;
                     UpdateEvent?.Invoke(i, item, true);
                     break;
                 }
@@ -34,44 +36,45 @@ public class InventoryManager : MonoBehaviour
     }
     public void DeleteItem(int index)
     {
-        if (InventoryHandler.instance.CellArray[index].Count == 1)
+        if (CellArray[index].Count == 1)
         {
-            Inventory[index] = null;
+            CellArray[index].item = null;
         }
         else
         {
-            InventoryHandler.instance.CellArray[index].Count -= 1;
+            CellArray[index].Count -= 1;
         }
-        UpdateEvent?.Invoke(index, Inventory[index], false);
+        UpdateEvent?.Invoke(index, CellArray[index].item, false);
     }
     public void Resort()
-    { 
-        
+    {
+        // сортировка инвентаря по текущим настройкам при удалении/добавлении предмета
     }
     public void DebugInfo()
     {
-        for (int i = 0; i < Inventory.Length; i++)
+        // в будущем будет удалено
+        for (int i = 0; i < CellArray.Length; i++)
         {
-            if (Inventory[i] != null)
+            if (CellArray[i] != null)
             {
-                if (Inventory[i].GetType().Equals(typeof(Weapon)))
+                if (CellArray[i].GetType().Equals(typeof(Weapon)))
                 {
-                    var item = (Weapon)Inventory[i];
+                    var item = (Weapon)CellArray[i].item;
                     Debug.Log(item.Rarity);
                 }
-                else if (Inventory[i].GetType().Equals(typeof(Potion)))
+                else if (CellArray[i].GetType().Equals(typeof(Potion)))
                 {
-                    var item = (Potion)Inventory[i];
+                    var item = (Potion)CellArray[i].item;
                     Debug.Log(item.HPRestore);
                 }
-                else if (Inventory[i].GetType().Equals(typeof(Armor)))
+                else if (CellArray[i].GetType().Equals(typeof(Armor)))
                 {
-                    var item = (Armor)Inventory[i];
+                    var item = (Armor)CellArray[i].item;
                     Debug.Log(item.Name);
                 }
-                else if (Inventory[i].GetType().Equals(typeof(Stuff)))
+                else if (CellArray[i].GetType().Equals(typeof(Stuff)))
                 {
-                    var item = (Stuff)Inventory[i];
+                    var item = (Stuff)CellArray[i].item;
                     Debug.Log(item.Name);
                 }
             }
@@ -79,12 +82,14 @@ public class InventoryManager : MonoBehaviour
     }
     public bool IsInvFull()
     {
-        if (Inventory[Inventory.Length - 1] != null) return true;
+        // проверка на заполненость инвентаря
+        if (CellArray[CellArray.Length - 1].item != null) return true;
         else return false;
     }
     private void UpdateCell(int index, Item _item, bool IsAdd)
     {
-        if (IsAdd) InventoryHandler.instance.CellArray[index].Additem(_item);
-        else InventoryHandler.instance.CellArray[index].DeleteItem();
+        // обновление ячейки - добавление предмета или удаление
+        if (IsAdd) CellArray[index].AddCell(_item);
+        else CellArray[index].DeleteItem();
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 
 public class CellInventory : Cell
 {
@@ -9,7 +7,7 @@ public class CellInventory : Cell
     public override Item item { get; set; }
     public int Count;
 
-    public override void Additem(Item _item)
+    public override void AddCell(Item _item) // добавление предмета и отображение информации о нем
     {
         item = _item;
         if (typeof(Weapon) == item.GetType())
@@ -19,7 +17,7 @@ public class CellInventory : Cell
             Description.text = $"Min:{itemCurrent.DamageMin}  Max:{itemCurrent.DamageMax}";
         }
     }
-    public void DeleteItem()
+    public void DeleteItem() // очистка информации
     {
         Name.text = null;
         Description.text = null;
