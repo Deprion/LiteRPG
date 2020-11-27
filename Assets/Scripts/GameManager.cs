@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour
 {
     private DataScript dataScript;
     public DropHandler drop;
-    public GameObject CellPrefab, InventoryMenu;
+    public GameObject CellPrefab;
     public ItemSO[] ItemArray = new ItemSO[10];
     private void Awake()
     {

@@ -26,7 +26,7 @@ public class Enemy
     }
     public static Item ItemSoToItem(ItemSO itemSO)
     {
-        if (itemSO.Equals(null)) return null;
+        if (itemSO == null) return null;
         else if (itemSO.GetType().Equals(typeof(WeaponSO)))
         {
             return new Weapon((WeaponSO)itemSO);

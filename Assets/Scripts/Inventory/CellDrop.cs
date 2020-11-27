@@ -20,6 +20,9 @@ public class CellDrop : Cell
 
     public void DeleteCell(DropHandler handler)
     {
-        if (handler.AddItemToInventory(item)) Destroy(gameObject);
+        if (handler.AddItemToInventory(item))
+        {
+            Destroy(gameObject);
+        }
     }
 }

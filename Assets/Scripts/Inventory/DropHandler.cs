@@ -30,6 +30,7 @@ public class DropHandler : MonoBehaviour
     public void ShowDrop(List<Item> array)
     {
         DropList.SetActive(true);
+        Debug.Log(array.Count);
         for (int i = 0; i < array.Count; i++)
         {
             AddDrop(array[i]);

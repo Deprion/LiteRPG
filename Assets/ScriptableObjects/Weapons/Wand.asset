@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Wand
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSO
   Name: Wand
-  Type: OneHanded
-  Value: 15
-  Price: 4651
+  Type: Dual
+  Value: 10
+  Price: 10
   MaxInCell: 1
-  DamageMax: 3
+  DamageMax: 10
   DamageMin: 1
-  Rarity: common
+  Rarity: Lel
