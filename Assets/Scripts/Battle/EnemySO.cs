@@ -10,4 +10,13 @@ public class EnemySO : ScriptableObject
     public int XP;
     public ItemSO[] ItemArray = new ItemSO[] { };
     public float[] ItemChances = new float[] { };
+    [System.Serializable]
+    public class info
+    {
+        [SerializeField]
+        ItemSO item;
+        [SerializeField]
+        float chance;
+    }
+    public info[] info1;
 }

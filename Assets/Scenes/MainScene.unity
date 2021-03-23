@@ -352,6 +352,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12e5dfdd45e48014abdf9c743223403d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CellArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &35338740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,27 +578,6 @@ MonoBehaviour:
   CellPrefab: {fileID: 334478345188793356, guid: dde0889ee7c17a3438b7b5ee19a040a8,
     type: 3}
   InventoryMenu: {fileID: 439086222}
-  CellArray:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &187815213
 GameObject:
   m_ObjectHideFlags: 0
